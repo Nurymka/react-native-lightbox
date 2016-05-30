@@ -34,6 +34,7 @@ var Lightbox = React.createClass({
       friction:      PropTypes.number,
     }),
     swipeToDismiss:  PropTypes.bool,
+    navExists: PropTypes.bool
   },
 
   getDefaultProps: function() {
@@ -77,6 +78,7 @@ var Lightbox = React.createClass({
       swipeToDismiss: this.props.swipeToDismiss,
       springConfig: this.props.springConfig,
       backgroundColor: this.props.backgroundColor,
+      navExists: this.props.navExists,
       children: this.getContent(),
       onClose: this.onClose,
     };

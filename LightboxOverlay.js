@@ -43,6 +43,7 @@ var LightboxOverlay = React.createClass({
     onOpen:          PropTypes.func,
     onClose:         PropTypes.func,
     swipeToDismiss:  PropTypes.bool,
+    navExists:       PropTypes.bool
   },
 
   getInitialState: function() {
@@ -183,10 +184,11 @@ var LightboxOverlay = React.createClass({
       };
       lightboxOpacityStyle.opacity = this.state.pan.interpolate({inputRange: [-WINDOW_HEIGHT, 0, WINDOW_HEIGHT], outputRange: [0, 1, 0]});
     }
-
+    
+    var originYOffset = navExists ? 64 : 0
     var openStyle = [styles.open, {
       left:   openVal.interpolate({inputRange: [0, 1], outputRange: [origin.x, target.x]}),
-      top:    openVal.interpolate({inputRange: [0, 1], outputRange: [origin.y + STATUS_BAR_OFFSET, target.y + STATUS_BAR_OFFSET]}),
+      top:    openVal.interpolate({inputRange: [0, 1], outputRange: [origin.y + STATUS_BAR_OFFSET + originYOffset, target.y + STATUS_BAR_OFFSET]}),
       width:  openVal.interpolate({inputRange: [0, 1], outputRange: [origin.width, WINDOW_WIDTH]}),
       height: openVal.interpolate({inputRange: [0, 1], outputRange: [origin.height, WINDOW_HEIGHT]}),
     }];
